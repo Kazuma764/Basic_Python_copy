@@ -1,7 +1,6 @@
-flag = True
 list1 = []
 
-while flag:
+while True:
     Y = input().split()
     a, b = int(Y[0]), int(Y[2])
     if Y[1] == "+":
