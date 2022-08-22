@@ -1,4 +1,3 @@
-flag = True
 list_in = []
 list_number = []
 count = 0
@@ -13,7 +12,7 @@ def devider(k):
     return list_in
 
 
-while flag is True:
+while True:
     x = int(input())
     if x == 0:
         break
@@ -21,7 +20,7 @@ while flag is True:
         list_number.append(devider(x))
 
 
-while flag is True:
+while True:
     if count == len(list_number):
         break
     else:
