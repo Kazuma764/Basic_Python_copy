@@ -1,6 +1,4 @@
-x = input().split()
-y = [int(i) for i in x]
-a, b, c = y[0], y[1], y[2]
+a, b, c = map(int, input().split())
 
 if a < b < c:
     print("Yes")
