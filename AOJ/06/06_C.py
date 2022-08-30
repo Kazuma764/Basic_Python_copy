@@ -18,14 +18,14 @@ def print_hash():
 
 
 def caluculate(x):
-    apart = [[0] * 10, [0] * 10, [0] * 10]
+    apart = [[0] * 10 for _ in range(3)]
     for i in x:
         if i[1] == 1:
-            apart[0][i[2] - 1] = apart[0][i[2] - 1] + i[3]
+            apart[0][i[2] - 1] += i[3]
         elif i[1] == 2:
-            apart[1][i[2] - 1] = apart[1][i[2] - 1] + i[3]
+            apart[1][i[2] - 1] += i[3]
         else:
-            apart[2][i[2] - 1] = apart[2][i[2] - 1] + i[3]
+            apart[2][i[2] - 1] += i[3]
     return apart
 
 
@@ -44,15 +44,11 @@ for i in log:
     else:
         log_a4.append(i)
 
-apart1 = caluculate(log_a1)
-apart2 = caluculate(log_a2)
-apart3 = caluculate(log_a3)
-apart4 = caluculate(log_a4)
+log_list = [log_a1, log_a2, log_a3, log_a4]
 
-print_room(apart1)
-print_hash()
-print_room(apart2)
-print_hash()
-print_room(apart3)
-print_hash()
-print_room(apart4)
+for i in range(len(log_list)):
+    apart = caluculate(log_list[i])
+    print_room(apart)
+    if i == len(log_list) - 1:
+        continue
+    print_hash()

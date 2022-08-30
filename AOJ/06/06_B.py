@@ -11,8 +11,6 @@ answer = []
 
 def remove_list(x):
     length = len(x)
-    if length == 0:
-        exit()
     numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"]
     for i in range(length):
         if x[i][1] in numbers:

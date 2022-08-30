@@ -6,10 +6,7 @@ if n % 2 == 0:
 else:
     m = n // 2
 
-for i in range(m):
-    a = x[i]
-    x[i] = x[-i - 1]
-    x[-i - 1] = a
+x = x[::-1]
 
 L = " ".join(map(str, x))
 print(L)
