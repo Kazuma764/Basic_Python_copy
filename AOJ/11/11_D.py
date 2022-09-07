@@ -86,7 +86,7 @@ for i in range(4):
 
 for i in range(n - 1):
     flag = False
-    if dices[i + 1] in list_dice:
+    if dices[i + 1] not in list_dice:
         flag = True
     else:
         break
