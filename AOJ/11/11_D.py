@@ -1,60 +1,97 @@
-same = [
-    [0, 1, 2, 3, 4, 5],
-    [0, 2, 4, 1, 3, 5],
-    [0, 4, 3, 2, 1, 5],
-    [0, 3, 1, 4, 2, 5],
-    [1, 5, 2, 3, 0, 4],
-    [1, 2, 0, 5, 3, 4],
-    [1, 0, 3, 2, 5, 4],
-    [1, 3, 5, 0, 2, 4],
-    [2, 1, 5, 0, 4, 3],
-    [2, 5, 4, 1, 0, 3],
-    [2, 4, 0, 5, 1, 3],
-    [2, 0, 1, 4, 5, 3],
-    [3, 0, 4, 1, 5, 2],
-    [3, 4, 5, 0, 1, 2],
-    [3, 5, 1, 4, 0, 2],
-    [3, 1, 0, 5, 4, 2],
-    [4, 0, 2, 3, 5, 1],
-    [4, 2, 5, 0, 3, 1],
-    [4, 5, 3, 2, 0, 1],
-    [4, 3, 0, 5, 2, 1],
-    [5, 4, 2, 3, 1, 0],
-    [5, 2, 1, 4, 3, 0],
-    [5, 1, 3, 2, 4, 0],
-    [5, 3, 4, 1, 2, 0],
-]
-
-same_l = len(same)
+list_dice = []
 
 
-def change(x, y):
+def roll_N(x):
     dice = [0] * 6
-    dice[0] = x[y[0]]
-    dice[1] = x[y[1]]
-    dice[2] = x[y[2]]
-    dice[3] = x[y[3]]
-    dice[4] = x[y[4]]
-    dice[5] = x[y[5]]
+    dice[0] = x[1]
+    dice[1] = x[5]
+    dice[2] = x[2]
+    dice[3] = x[3]
+    dice[4] = x[0]
+    dice[5] = x[4]
     return dice
 
 
+def roll_S(x):
+    dice = [0] * 6
+    dice[0] = x[4]
+    dice[1] = x[0]
+    dice[2] = x[2]
+    dice[3] = x[3]
+    dice[4] = x[5]
+    dice[5] = x[1]
+    return dice
+
+
+def roll_E(x):
+    dice = [0] * 6
+    dice[0] = x[3]
+    dice[1] = x[1]
+    dice[2] = x[0]
+    dice[3] = x[5]
+    dice[4] = x[4]
+    dice[5] = x[2]
+    return dice
+
+
+def roll_W(x):
+    dice = [0] * 6
+    dice[0] = x[2]
+    dice[1] = x[1]
+    dice[2] = x[5]
+    dice[3] = x[0]
+    dice[4] = x[4]
+    dice[5] = x[3]
+    return dice
+
+
+def rotate(x):
+    dice = [0] * 6
+    dice[0] = x[0]
+    dice[1] = x[3]
+    dice[2] = x[1]
+    dice[3] = x[4]
+    dice[4] = x[2]
+    dice[5] = x[5]
+    return dice
+
+
+def check(x):
+    if x in list_dice:
+        return
+    else:
+        list_dice.append(x)
+
+
 dices = []
+
 n = int(input())
 for i in range(n):
     x = list(map(int, input().split()))
     dices.append(x)
 
+x = dices[0]
+
+for i in range(4):
+    for j in range(4):
+        x = rotate(x)
+        check(x)
+    x = roll_N(x)
+
+for i in range(4):
+    for j in range(4):
+        x = rotate(x)
+        check(x)
+    x = roll_E(x)
+
 for i in range(n - 1):
     flag = False
-    for j in range(same_l):
-        check = change(dices[i + 1], same[j])
-        if check == dices[0]:
-            flag = True
-    if flag:
+    if dices[i + 1] in list_dice:
+        flag = True
+    else:
         break
 
 if flag:
-    print("No")
-else:
     print("Yes")
+else:
+    print("No")
